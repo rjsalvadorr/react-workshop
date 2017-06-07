@@ -52,28 +52,25 @@ class Timer extends Component {
     }
 
     render() {
-        const {timeLeft} = this.props;
+        //const {timeLeft} = this.props;
         return(
             <div className="timer custom-component">
                 <TimeDisplay timeMinutes={this.state.timeMinutes} time={this.state.time}/>
                 <button onClick={this.handleStart}>Start</button>
                 <button onClick={this.handleStop}>Stop</button>
-                <div>
-                    Time left: {timeLeft} seconds
-                </div>
             </div>
         )
     } 
 }
 
 Timer.propTypes = {
-    timeLeft: PropTypes.number,
+    //timeLeft: PropTypes.number,
     onTick: PropTypes.func.isRequired,
 }
 
 function mapStateToProps(state) {
     return {
-        timeLeft: state.timer.timeLeft,
+    //     timeLeft: state.timer.timeLeft,
     }
 }
 

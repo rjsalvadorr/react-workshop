@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
+import TimeLeft from './containers/TimeLeft'
+
 // import Timer from "./Timer"
 
 class App extends Component {
@@ -22,6 +24,7 @@ class App extends Component {
         </ul>
         <h1>Apps:</h1>
         {this.props.children}
+        <TimeLeft />
       </div>
     );
   }

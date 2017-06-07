@@ -1,4 +1,3 @@
-
 import {TIMER_TICK} from '../types';
 
 const MAX_TIME = 5 * 60;
