@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {timerTick} from './actions'
 
 const TimeDisplay = ({timeMinutes, time}) => {
     return (<div className="timer-time">{timeMinutes}m {time}s</div>)
@@ -29,6 +31,7 @@ class Timer extends Component {
                 });
             }
 
+            this.props.onTick()
         }, 1000);
     }
 
@@ -49,14 +52,35 @@ class Timer extends Component {
     }
 
     render() {
+        const {timeLeft} = this.props;
         return(
             <div className="timer custom-component">
                 <TimeDisplay timeMinutes={this.state.timeMinutes} time={this.state.time}/>
                 <button onClick={this.handleStart}>Start</button>
                 <button onClick={this.handleStop}>Stop</button>
+                <div>
+                    Time left: {timeLeft} seconds
+                </div>
             </div>
         )
     } 
 }
 
-export default Timer;
+Timer.propTypes = {
+    timeLeft: PropTypes.number,
+    onTick: PropTypes.func.isRequired,
+}
+
+function mapStateToProps(state) {
+    return {
+        timeLeft: state.timer.timeLeft,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onTick: () => dispatch(timerTick())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
